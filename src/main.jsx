@@ -9,6 +9,7 @@ import Register from './Pages/Register';
 import Root from './Root';
 import AuthProvider from './Providers/AuthProvider';
 import { Toaster } from 'react-hot-toast';
+import Dashboard from './Dashboard/Dashboard';
 
 const router = createBrowserRouter([
   {
@@ -28,6 +29,10 @@ const router = createBrowserRouter([
         element: <Register></Register>,
       },
     ],
+  },
+  {
+    path: 'dashboard',
+    element: <Dashboard></Dashboard>,
   },
 ]);
 
