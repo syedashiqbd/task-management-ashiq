@@ -10,6 +10,8 @@ import Root from './Root';
 import AuthProvider from './Providers/AuthProvider';
 import { Toaster } from 'react-hot-toast';
 import Dashboard from './Dashboard/Dashboard';
+import AddTask from './Dashboard/AddTask';
+import PrivateRoute from './PrivateRoute';
 
 const router = createBrowserRouter([
   {
@@ -32,7 +34,17 @@ const router = createBrowserRouter([
   },
   {
     path: 'dashboard',
-    element: <Dashboard></Dashboard>,
+    element: (
+      <PrivateRoute>
+        <Dashboard></Dashboard>
+      </PrivateRoute>
+    ),
+    children: [
+      {
+        path: 'addTask',
+        element: <AddTask></AddTask>,
+      },
+    ],
   },
 ]);
 

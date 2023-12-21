@@ -26,14 +26,16 @@ const Navbar = () => {
       >
         Home
       </NavLink>
-      <NavLink
-        to="/dashboard"
-        className={({ isActive }) =>
-          isActive ? ' underline decoration-[#FFB400] mr-4 ' : 'mr-4'
-        }
-      >
-        Dashboard
-      </NavLink>
+      {user && (
+        <NavLink
+          to="/dashboard"
+          className={({ isActive }) =>
+            isActive ? ' underline decoration-[#FFB400] mr-4 ' : 'mr-4'
+          }
+        >
+          Dashboard
+        </NavLink>
+      )}
       <NavLink
         to="/register"
         className={({ isActive }) =>
