@@ -57,7 +57,9 @@ const Navbar = () => {
               {navLinks}
             </ul>
           </div>
-          <p className=" font-bold text-2xl">Task Management</p>
+          <p className=" font-bold text-xl text-center">
+            Task <br /> Management
+          </p>
         </div>
         <div className="navbar-end hidden lg:flex">
           <ul className="menu menu-horizontal px-1 text-lg ">{navLinks}</ul>
