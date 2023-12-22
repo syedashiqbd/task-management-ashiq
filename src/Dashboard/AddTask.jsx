@@ -25,11 +25,11 @@ const AddTask = () => {
       priority: data.priority,
       status: 'to-do',
     };
-    console.log(taskInfo);
+    // console.log(taskInfo);
 
     // calling api to insert task in database
     axios
-      .post('http://localhost:5000/addTask', taskInfo)
+      .post('https://task-management-server-blue.vercel.app/addTask', taskInfo)
       .then((res) => {
         if (res.data.insertedId) {
           navigate('/dashboard');
@@ -42,7 +42,7 @@ const AddTask = () => {
   };
 
   return (
-    <div>
+    <div className="mb-10">
       <h1 className="text-2xl font-semibold text-center mb-10">Add Task</h1>
 
       <div className="card flex-shrink-0 w-full  shadow-2xl bg-base-100 lg:w-8/12 mx-auto">

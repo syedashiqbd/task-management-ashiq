@@ -47,17 +47,19 @@ const router = createBrowserRouter([
       },
     ],
   },
+  // {
+  //   path: 'addTask',
+  //   element: <AddTask></AddTask>,
+  // },
 ]);
 
 const queryClient = new QueryClient();
 
 ReactDOM.createRoot(document.getElementById('root')).render(
-  <React.StrictMode>
-    <QueryClientProvider client={queryClient}>
-      <AuthProvider>
-        <Toaster></Toaster>
-        <RouterProvider router={router} />
-      </AuthProvider>
-    </QueryClientProvider>
-  </React.StrictMode>
+  <QueryClientProvider client={queryClient}>
+    <AuthProvider>
+      <Toaster></Toaster>
+      <RouterProvider router={router} />
+    </AuthProvider>
+  </QueryClientProvider>
 );

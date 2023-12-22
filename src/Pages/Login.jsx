@@ -52,7 +52,6 @@ const Login = () => {
             color: 'white',
           },
         });
-
         // navigate after login
         navigate(location?.state ? location.state : '/');
       })
