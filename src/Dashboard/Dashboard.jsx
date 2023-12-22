@@ -1,13 +1,4 @@
-import {
-  FaBullhorn,
-  FaCommentSlash,
-  FaHome,
-  FaList,
-  FaPen,
-  FaPenSquare,
-  FaUserAlt,
-  FaUsers,
-} from 'react-icons/fa';
+import { FaHome, FaList, FaPen, FaTrashAlt } from 'react-icons/fa';
 import { LuLogOut } from 'react-icons/lu';
 import { Link, NavLink, Outlet } from 'react-router-dom';
 
@@ -15,9 +6,27 @@ import toast from 'react-hot-toast';
 import { useContext } from 'react';
 import { AuthContext } from '../Providers/AuthProvider';
 import Navbar from '../components/Navbar';
+import { useQuery } from '@tanstack/react-query';
+import axios from 'axios';
+import Loading from '../components/Loading';
+import TaskCard from '../components/TaskCard';
 
 const Dashboard = () => {
   const { user, logout } = useContext(AuthContext);
+
+  const { data: allTask, isLoading } = useQuery({
+    queryKey: ['allTask'],
+    queryFn: async () => {
+      const res = await axios.get('http://localhost:5000/allTask');
+      return res.data;
+    },
+  });
+
+  if (isLoading) {
+    return <Loading></Loading>;
+  }
+
+  console.log(allTask);
 
   const handleLogOut = () => {
     logout();
@@ -73,6 +82,30 @@ const Dashboard = () => {
         {/* dashboard content */}
         <div className=" col-span-9 m-10 w-10/12">
           <Outlet></Outlet>
+          <div className="grid lg:grid-cols-3 md:grid-cols-2 grid-cols-1 lg:gap-6 md:gap-3">
+            <div className="text-center border rounded p-4 bg-yellow-300">
+              <span className="font-bold">TO-DO</span>
+
+              {/* Single task card */}
+              <ul>
+                {allTask?.map((task) => (
+                  <li className="mt-3" key={task._id}>
+                    <TaskCard task={task}></TaskCard>
+                  </li>
+                ))}
+              </ul>
+            </div>
+
+            <div className="text-center border rounded p-4 bg-purple-300 ">
+              <span className="font-bold ">ONGOING</span>
+              {/* Single task card */}
+            </div>
+
+            <div className="text-center border rounded p-4 bg-green-300 ">
+              <span className="font-bold ">COMPLETED</span>
+              {/* Single task card */}
+            </div>
+          </div>
         </div>
       </div>
     </div>

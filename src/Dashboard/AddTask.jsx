@@ -29,7 +29,7 @@ const AddTask = () => {
 
     // calling api to insert task in database
     axios
-      .post('http://localhost:5000/addPost', taskInfo)
+      .post('http://localhost:5000/addTask', taskInfo)
       .then((res) => {
         if (res.data.insertedId) {
           navigate('/dashboard');
